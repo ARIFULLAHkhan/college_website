@@ -1,0 +1,50 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+	<div class="container mt-4">
+		<a href="{% url 'student_home' %}" class="btn btn-primary">Back</a>
+		<hr>
+		<a href="{% url 'add_batch' %}" class="btn btn-success">Add batch</a>
+		<hr>
+	</div>
+	<div class="container mt-3">
+		<table class="table table-bordered table-striped table-hover">
+			<tr>
+				<thead>
+					<th>Class ID</th>
+					<th>Batch Name</th>
+					<th>Shift</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Status</th>
+					<th style="width: 40%;">Action</th>
+				</thead>
+			</tr>
+			<tbody>
+				{% for i in all_batches %}
+				<tr>
+					<td>{{ i.id }}</td>
+					<td>{{ i.batch_name }}</td>
+					<td>{{i.shift}}</td>
+					<td>{{i.start_date}}</td>
+					<td>{{i.end_date}}</td>
+					<td>{{i.status}}</td>
+			
+					<td>
+						<a href="{% url 'update_batch' i.id %}" class="btn btn-success btn-sm">Update</a>
+						<a href="{% url 'delete_batch' i.id %}" class="btn btn-danger btn-sm">Remove</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+			
+		</table>
+	</div>
+
+{% endblock %}

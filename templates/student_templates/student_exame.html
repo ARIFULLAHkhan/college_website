@@ -1,0 +1,30 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+  <div class="container">
+    <a href="{% url 'home_page' %}" class="btn btn-primary mb-2">Back</a>
+    <h4 class="float-right" style="margin-top: -5px;">EXAM INFORMATION</h4>
+    <hr>
+    <div class="row ml-auto mr-auto text-center">
+      <div class="col-sm-2">
+        <a href="{% url 'student_exam_type_show' %}" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/exam/001-exam.png' %}" width="60%" style="filter: invert(1)">
+        <h5 class="mt-2">Exam Types</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'student_exam' %}" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/exam/003-test.png' %}" width="60%" style="filter: invert(1)">
+        <h5 class="mt-2">Student Exam </h5>
+        </a>
+      </div>
+    </div>
+      
+  </div>
+
+  {% endblock %}

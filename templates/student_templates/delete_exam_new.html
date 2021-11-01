@@ -1,0 +1,22 @@
+{% extends 'links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+	<div class="container p-4 bg-info text-white text-center">
+		<h2>Student Delete</h2>
+	</div>
+	
+	<div class="container mt-4">
+		<hr>
+		<h4>Are You Sure Want To Delete :</h4>
+		<form action="" method="post">
+			{% csrf_token %}
+			<a href="{% url 'student_exam' %}" class="btn btn-primary btn-sm">Back</a>
+			<input type="submit" name="" class="btn btn-danger btn-sm" value="Delete">
+		</form>
+		<hr>
+	</div>
+
+{% endblock %}

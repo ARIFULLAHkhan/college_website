@@ -1,0 +1,46 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+	<div class="container mt-4">
+		<hr>
+		<a href="{% url 'student_home' %}" class="btn btn-primary">Back</a>
+		
+		<a href="{% url 'add_subject_info' %}" class="btn btn-success" style="float: right;">Add Subject</a>
+		<hr>
+	</div>
+	<div class="container mt-3">
+		<table class="table table-bordered table-striped table-hover">
+			<tr>
+				<thead style="background-color: black; color: white">
+					<th>Subject Name</th>
+					<th>Theory Marks</th>
+					<th>Passing Marks</th>
+					<th>Practical Marks</th>
+					<th style="width: 40%;">Action</th>
+				</thead>
+			</tr>
+			<tbody>
+				{% for i in get_subject_list %}
+				<tr>
+					<td>{{ i.subject_name }}</td>
+					<td>{{ i.theory_marks }}</td>
+					<td>{{i.passing_marks}}</td>
+					<td>{{i.practical_marks}}</td>
+					<td>
+						<a href="{% url 'update_subject_info' i.id %}" class="btn btn-success btn-sm">Update</a>
+						<a href="{% url 'delete_subject_info' i.id %}" class="btn btn-danger btn-sm">Remove</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+			
+		</table>
+	</div>
+
+{% endblock %}

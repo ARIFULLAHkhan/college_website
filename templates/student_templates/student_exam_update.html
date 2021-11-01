@@ -1,0 +1,41 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<div class="container">
+		<a href="{% url 'student_exam_type_show' %}" class="btn btn-primary">Back</a>
+		<hr>
+	</div>
+	<div class="container">
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="row" style="background-color: lightgrey; padding: 32px;">
+			<div class="col-sm-12">
+				<form action="" method="post">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-sm-12">
+							{{exam_type.exam_name | as_crispy_field}}
+						</div>
+					</div><hr>
+					<div class="row">
+						<div class="col-sm-12">
+							<button type="submit" class="btn btn-info mb-1">Update Exam Type</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</form>
+	</div>
+	<br>
+	<br>
+
+
+{% endblock %}

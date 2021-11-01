@@ -1,0 +1,89 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+  <div class="container">
+    <div class="row ml-auto mr-auto mt-4 mb-5 text-center">
+      <div class="col-sm-2">
+        <a href="{% url 'home_page' %}" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/004-home.png' %}" width="60%" style="filter: invert(1)">
+        <h5 class="mt-2">Home</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'employee_home' %}" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/005-tutor.png' %}" width="60%" style="filter: invert(1)">
+        <h5 class="mt-2">Employees</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'student_home' %}" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/002-information.png' %}" width="60%" style="filter: invert(1);">
+        <h5 class="mt-2">Students</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'exam' %}" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/001-test.png' %}" width="60%" style="filter: invert(1);">
+        <h5 class="mt-2">Exam</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'hostels' %}" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/007-hostel.png' %}" width="60%" style="filter: invert(1);">
+        <h5 class="mt-2">Hostel</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="" class="btn btn-secondary text-white">
+          <img src="{% static 'icons/006-profit-report.png' %}" width="60%" style="filter: invert(1);">
+        <h5 class="mt-2">Security</h5>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-2 bg-success p-2 text-white">
+    <h4>Dashboard</h4>
+  </div>
+  <div class="container mt-2">
+    <div class="row">
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body text-center bg-light">
+              <button style="border-radius: 50%; width: 35%; height: 70px; background-color:grey; color: white;"><h1>{{ student_count }}</h1></button>
+              <h6 class="card-title pt-2">TOTAL STUDENT</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body text-center bg-light">
+              <button style="border-radius: 50%; width: 35%; height: 70px; background-color:grey; color: white;"><h1>{{ employee_count }}</h1></button>
+              <h6 class="card-title pt-2">TOTAL EMPLOYEE</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body text-center bg-light">
+              <button style="border-radius: 50%; width: 35%; height: 70px; background-color:grey; color: white;"><h1>{{ active_student }}</h1></button>
+              <h6 class="card-title pt-2">ACTIVE STUDENT</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body text-center bg-light">
+              <button style="border-radius: 50%; width: 35%; height: 70px; background-color:grey; color: white;"><h1>{{ inactive_student }}</h1></button>
+              <h6 class="card-title pt-2">INACTIVE STUDENT</h6>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  {% endblock %}

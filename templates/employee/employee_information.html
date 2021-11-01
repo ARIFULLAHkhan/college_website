@@ -1,0 +1,99 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+
+<div class="container">
+	<a href="{% url 'employee_home' %}" class="btn btn-primary mb-2">Back</a>
+	<br>
+	{% include 'student_templates/basic_templates/messages.html' %}
+		<table class="table table-bordered table-hover table-striped">
+			<div class="container bg-light">
+		<div class="row">
+			<div class="col-sm-12">
+				<h6 class="pt-4">EMPLOYEE INFORMATION</h6>
+			</div>
+		</div><hr>
+		<div class="row" style="background-color: lightgrey; padding: 8px;">
+			<div class="col-sm-6">
+				<form action="{% url 'employee_information' %}" method="get">
+					<input type="text" name="get_employee" class="form-control d-inline w-50" placeholder="Search by employee name">
+					<button type="submit" class="btn btn-info mb-1 btn-sm">Search</button>
+				</form>
+			</div>
+			<div class="col-sm-6">
+				<a href="{% url 'add_employee' %}">
+				<button class="float-right btn btn-success">Create</button>
+				</a>
+			</div>
+		</div>
+	</div>
+			<tr class="bg-dark text-white">
+				<th>Employee Name</th>
+				<th>Employee Contact</th>
+				<th>Gender</th>
+				<th>Basic Salary</th>
+				<th>Hire Date</th>
+				<th>End Date</th>
+				<th>Actions</th>
+			</tr>
+			{% for i in all_employee %}
+			<tr>
+				<td>{{i.Employee_name}}</td>
+				<td>{{i.Emp_mobile_no}}</td>
+				<td>{{i.Gender}}</td>
+				<td>{{i.Basic_salary}}</td>
+				<td>{{i.Hire_date}}</td>
+				<td>{{i.End_date}}</td>
+				<td>
+					<a href="{% url 'employee_update' i.id %}" type="button" class="btn btn-success btn-sm">Update</a>
+					<a href="{% url 'employee_remove' i.id %}" type="button" class="btn btn-danger btn-sm">Remove</a>
+					<a href="" type="button" class="btn btn-info btn-sm">View</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	<div class="container">
+		{% if all_employee.has_other_pages %}
+		<ul class="pagination">
+				{% if all_employee.has_previous %}
+				<li class="page-item">
+					<a class="page-link" href="?page={{ all_employee.previous_page_number }}">Previous</a>
+				</li>
+				{% else %}
+				<li class="page-item disabled">
+					<a class="page-link" href="">Previous</a>
+				</li>
+				{% endif %}
+			  {% for i in all_employee.paginator.page_range %}
+				  {% if all_employee.number == i %}
+				  <li class="page-item active">
+				  	<a class="page-link" href="">{{i}}</a>
+				  </li>
+				  {% else %}
+				  <li class="page-item">
+				  	<a class="page-link" href="?page={{i}}">{{i}}</a>
+				  </li>
+				  {% endif %}
+			  {% endfor %}
+
+			  {% if all_employee.has_next %}
+			  <li class="page-item">
+			  	<a class="page-link" href="?page={{ all_employee.next_page_number }}">Next</a>
+			  </li>
+			  {% else %}
+			  <li class="page-item disabled">
+			  	<a class="page-link" href="">Next</a>
+			  </li>
+			  {% endif %}
+		{% endif %}
+		</ul>
+	</div>
+
+	{% endblock %}

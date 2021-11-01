@@ -1,0 +1,58 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<div class="container">
+	<a href="{% url 'employee_home' %}" class="btn btn-primary mb-2">Back</a>
+	<br>
+	{% include 'student_templates/basic_templates/messages.html' %}
+		<table class="table table-bordered table-hover table-striped">
+			<div class="container bg-light">
+		<div class="row">
+			<div class="col-sm-12">
+				<h6 class="pt-4">QUALIFICATION INFORMATION</h6>
+			</div>
+		</div><hr>
+		<div class="row" style="background-color: lightgrey; padding: 32px;">
+			<div class="col-sm-12">
+				<form action="" method="post">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-sm-12">
+							{{qualification_form.qualification_name | as_crispy_field }}
+						</div>
+					</div><hr>
+					<div class="row">
+						<div class="col-sm-12">
+							<button type="submit" class="btn btn-info mb-1">Add Qualification</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div><hr>
+			<tr class="bg-dark text-white">
+				<th>Qualification ID</th>
+				<th>Qualification Name</th>
+				<th>Action</th>
+			</tr>
+			{% for i in all_qualification %}
+			<tr>
+				<td>{{ i.id }}</td>
+				<td>{{ i.qualification_name }}</td>
+				<td style="width: 20%;">
+					<a href="{% url 'qualification_update' i.id %}" type="button" class="btn btn-success btn-sm">Update</a>
+					<a href="{% url 'qualification_remove' i.id %}" type="button" class="btn btn-danger btn-sm">Remove</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	{% endblock %}

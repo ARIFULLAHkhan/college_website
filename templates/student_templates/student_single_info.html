@@ -1,0 +1,245 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<div class="container">
+	<a href="{% url 'student_info' %}">
+		<button class="btn btn-success">Back</button>
+	</a>
+	<h4 class="float-right">STUDENT INFORMATION</h4>
+	<hr>
+</div>
+
+<div class="container">
+	<div class="row p-3">
+		<div class="col-sm-4">
+			<img src="{{ get_single_student_info.picture.url }}" width="80%" class="ml-auto mr-auto d-block img-thumbnail">
+		</div>
+		<div class="col-sm-8">
+			<table class="table table-hover table-bordered table-striped table-sm">
+				<thead>
+					<tr>
+						<th colspan="2" style="color: green; font-size: 20px;">PERSONAL INFORMATION</th>
+					</tr>
+					<tr>
+						<th style="width: 40%;">Name</th>
+						<td>{{ get_single_student_info.student_name }}</td>
+					</tr>
+					<tr>
+						<th>Father Name</th>
+						<td>{{ get_single_student_info.father_name }}</td>
+					</tr>
+					<tr>
+						<th>Birth Date</th>
+						<td>{{ get_single_student_info.D_O_B }}</td>
+					</tr>
+					<tr>
+						<th>Adress</th>
+						<td>{{ get_single_student_info.address }}</td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row p-3">
+		<div class="col-sm-12">
+			<table class="table table-hover table-bordered table-striped table-sm">
+				<thead>
+					<tr>
+						<th>Nationality</th>
+						<td>{{ get_single_student_info.nationality }}</td>
+						<th>Registration No</th>
+						<td>{{ get_single_student_info.registration_no }}</td>
+					</tr>
+					<tr>
+						<th>CNIC</th>
+						<td>{{ get_single_student_info.cnic }}</td>
+						<th>Adress</th>
+						<td style="width: 30%;">{{ get_single_student_info.address }}</td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<hr>
+</div>
+
+<div class="container">
+	<div class="row p-3">
+		<div class="col-sm-6">
+			
+			{% if get_single_student_info.student_fee_collection_set.all %}
+
+			<table class="table table-hover table-bordered table-striped table-sm">
+				<thead>
+					<tr>
+						<th colspan="2" style="color: brown; font-size: 20px;">CLASS INFORMATION</th>
+					</tr>
+
+					{% for i in get_single_student_info.student_class_set.all %}
+
+					<tr>
+						<th style="width: 40%;">Student Class</th>
+						<td>{{ i.class_id }}</td>
+					</tr>
+					<tr>
+						<th>Batch</th>
+						<td>{{ i.batch_id }}</td>
+					</tr>
+					<tr>
+						<th>Enrolment Date</th>
+						<td>{{ i.enrolment_date }}</td>
+					</tr>
+					<tr>
+						<th>Status</th>
+						<td>{{ i.status }}</td>
+					</tr>
+					<tr>
+						<th>Remarks</th>
+						<td>{{ i.remarks }}</td>
+					</tr>
+
+					{% endfor %}
+
+				</thead>
+			</table>
+
+			{% else %}
+
+				<h5 style="color: red;">We don't have find any class record...</h5>
+
+			{% endif %}
+
+		</div>
+
+		{% if get_single_student_info.student_fee_collection_set.all %}
+
+		<div class="col-sm-6">
+			<table class="table table-hover table-bordered table-striped table-sm">
+				<thead>
+					{% for i in get_single_student_info.student_fee_collection_set.all %}
+					<tr>
+						<th colspan="2" style="color: brown; font-size: 20px;">FEE COLLECTION INFORMATION</th>
+					</tr>
+					<tr>
+						<th>Class</th>
+						<td>{{ i.class_id }}</td>
+					</tr>
+					<tr>
+						<th style="width: 40%;">Fee Date</th>
+						<td>{{ i.fee_date }}</td>
+					</tr>
+					<tr>
+						<th>Applied Fees</th>
+						<td>{{ i.applied_fee }}</td>
+					</tr>
+					{% endfor %}
+				</thead>
+			</table>
+			{% else %}
+			<h5 style="color: red;">We don't have find any fee record</h5>
+		</div>
+		{% endif %}
+	</div>
+</div>
+</div>
+
+<div class="container">
+	<hr>
+</div>
+
+<div class="container">
+	{% if get_single_student_info.student_exam_set.all %}
+			<table class="p-3 table table-hover table-bordered table-striped table-sm">
+				<thead>
+					<tr>
+						<th colspan="4" style="color: green; font-size: 20px;">EXAM INFORMATION</th>
+					</tr>
+
+					{% for i in get_single_student_info.student_exam_set.all %}
+					
+					<tr>
+						<th style="">Student Class</th>
+						<td>{{ i.class_id }}</td>
+						<th>Student Batch</th>
+						<td>{{ i.batch_id }}</td>
+					</tr>
+					<tr>
+						<th>Subject Name</th>
+						<td>{{ i.subject_id }}</td>
+						<th>Obtained Marks</th>
+						<td>{{ i.obtained_marks }}</td>
+					</tr>
+					<tr>
+						<th>Exam</th>
+						<td>{{ i.exam_id }}</td>
+						<th>Status</th>
+						<td>{{ i.status }}</td>
+					</tr>
+					
+					{% endfor %}
+
+				</thead>
+			</table>
+
+			{% else %}
+
+				<h3>We don't have find any Exam record...</h3>
+
+			{% endif %}
+</div>
+
+<div class="container">
+	<hr>
+</div>
+
+<div class="container">
+	{% if get_single_student_info.student_record_hostel_set.all %}
+			<table class="p-3 table table-hover table-bordered table-striped table-sm">
+				<thead>
+					<tr>
+						<th colspan="4" style="color: brown; font-size: 20px;">HOSTEL INFORMATION</th>
+					</tr>
+
+					{% for i in get_single_student_info.student_record_hostel_set.all %}
+					
+						<tr>
+							<th style="">Room ID</th>
+							<td>{{ i.id }}</td>
+							<th>Hostel Name</th>
+							<td>{{ i.hostel }}</td>
+						</tr>
+						{% for i in get_single_student_info.allotment_of_room_set.all %}
+						<tr>
+							<th>Room Number</th>
+							<td>{{ i.room_id }}</td>
+							<th>Status</th>
+							<td>{{ i.status }}</td>
+						</tr>
+						{% endfor %}
+					
+					{% endfor %}
+
+				</thead>
+			</table>
+
+			{% else %}
+
+				<h3>We don't have find any Exam record...</h3>
+
+			{% endif %}
+</div>
+<br>
+<br>
+
+{% endblock %}

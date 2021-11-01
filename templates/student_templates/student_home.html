@@ -1,0 +1,66 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<div class="container">
+    <a href="{% url 'home_page' %}" class="btn btn-primary mb-2">Back</a>
+    <h4 class="float-right" style="margin-top: -5px;">STUDENT INFORMATION</h4>
+    <hr>
+
+    <div class="row ml-auto mr-auto text-center">
+      <div class="col-sm-2">
+        <a href="{% url 'batch_list' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/001-batch.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2 pt-4">Add Batches</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'class_registration_list' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/006-presentation-1.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Add Class Registration</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'student_class_list' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/005-presentation.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Add Student Class</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'subject_list_info' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/007-books-stack-of-three.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2 pt-4">Add Subject</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'assign_class_list' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/009-assignment.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Assign Subject Class</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'student_payment_list' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/013-money.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Add Student Payment</h5>
+        </a>
+      </div>
+      <div class="col-sm-2 mt-3">
+        <a href="{% url 'student_fee_list' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/012-mobile-payment.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Student Fee Collection</h5>
+        </a>
+      </div>
+      <div class="col-sm-2 mt-3">
+        <a href="{% url 'student_info' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/010-boss.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Student Information</h5>
+        </a>
+      </div>
+    </div>    
+  </div>
+
+  {% endblock %}

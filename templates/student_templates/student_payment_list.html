@@ -1,0 +1,50 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+	<div class="container mt-4">
+		<hr>
+		<a href="{% url 'student_home' %}" class="btn btn-primary">Back</a>
+		
+		<a href="{% url 'add_student_payment' %}" class="btn btn-success" style="float: right;">Add Payment</a>
+		<hr>
+	</div>
+	<div class="container mt-3">
+		<table class="table table-bordered table-striped table-hover">
+			<tr>
+				<thead style="background-color: black; color: white">
+					<th>Student ID</th>
+					<th>Class ID</th>
+					<th>Payment Date</th>
+					<th>Amount</th>
+					<th>Slip No</th>
+
+					<th style="width: 40%;">Action</th>
+				</thead>
+			</tr>
+			<tbody>
+				{% for i in get_payment_list %}
+				<tr>
+					<td>{{ i.student_id }}</td>
+					<td>{{ i.class_id }}</td>
+					<td>{{i.payment_date}}</td>
+					<td>{{i.amount}}</td>
+					<td>{{i.slip_no}}</td>
+
+					<td>
+						<a href="{% url 'update_payment' i.id %}" class="btn btn-success btn-sm">Update</a>
+						<a href="{% url 'delete_payment' i.id %}" class="btn btn-danger btn-sm">Remove</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+			
+		</table>
+	</div>
+
+{% endblock %}

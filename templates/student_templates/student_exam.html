@@ -1,0 +1,63 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<div class="container">
+	<a href="{% url 'exam' %}" class="btn btn-primary mb-2">Back</a>
+	<br>
+	<div class="floa-right">
+		{% include 'student_templates/basic_templates/messages.html' %}
+	</div>
+		<table class="table table-bordered table-hover table-striped">
+			<div class="container bg-light">
+		<div class="row">
+			<div class="col-sm-12">
+				<h6 class="pt-4">STUDENT EXAM INFORMATION</h6>
+			</div>
+		</div><hr>
+		<div class="row" style="background-color: lightgrey; padding: 8px;">
+			<div class="col-sm-6">
+				<form>
+					<input type="text" name="" class="form-control d-inline w-50" placeholder="Search">
+					<button type="submit" class="btn btn-info mb-1">Go</button>
+				</form>
+			</div>
+			<div class="col-sm-6">
+				<a href="{% url 'add_student_exam' %}" class="float-right btn btn-success">Create</a>
+			</div>
+		</div>
+	</div>
+			<tr class="bg-dark text-white">
+				<th>Student Name</th>
+				<th>Class Name</th>
+				<th>Batch</th>
+				<th>Subject</th>
+				<th>Obtained Marks</th>
+				<th>Status</th>
+				<th>Exam</th>
+				<th>Actions</th>
+			</tr>
+			{% for i in all_student_exam %}
+			<tr>
+				<td>{{i.student_id}}</td>
+				<td>{{i.class_id}}</td>
+				<td>{{i.batch_id}}</td>
+				<td>{{i.subject_id.subject_id.subject_name}}</td>
+				<td>{{i.obtained_marks}}</td>
+				<td>{{i.status}}</td>
+				<td>{{i.exam_id}}</td>
+				<td>
+					<a href="{% url 'update_exam' i.id %}" type="button" class="btn btn-success btn-sm">Update</a>
+					<a href="{% url 'delete_exame' i.id %}" type="button" class="btn btn-danger btn-sm">Remove</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	{% endblock %}

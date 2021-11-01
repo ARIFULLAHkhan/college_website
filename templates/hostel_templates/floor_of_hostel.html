@@ -1,0 +1,66 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+
+<div class="container">
+  <a href="{% url 'hostels' %}" class="btn btn-primary mb-2">Back</a>
+    <br>
+    <div class="floa-right">
+      {% include 'student_templates/basic_templates/messages.html' %}
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+      <div class="container bg-light">
+    <div class="row">
+      <div class="col-sm-12">
+        <h6 class="pt-4">FLOORS OF HOSTELS</h6>
+      </div>
+    </div><hr>
+    <div class="row" style="background-color: lightgrey; padding: 32px;">
+      <div class="col-sm-12">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-12">
+              {{floor_form.hostel_id | as_crispy_field}}
+            </div>
+            <div class="col-sm-12">
+              {{floor_form.floor_name | as_crispy_field}}
+            </div>
+          </div><hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-info mb-1">Add Floor</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><hr>
+      <tr class="bg-dark text-white">
+        <th>ID</th>
+        <th>Hostel Name</th>
+        <th>Floor Name</th>
+        <th>Action</th>
+      </tr>
+      {% for i in all_floor %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.hostel_id}}</td>
+        <td>{{ i.floor_name }}</td>
+        <td style="width: 20%;">
+          <a href="{% url 'update_floor' i.id %}" type="button" class="btn btn-success btn-sm">Update</a>
+          <a href="{% url 'delete_floor' i.id %}" type="button" class="btn btn-danger btn-sm">Remove</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<div class="container">
+    <a href="/" class="btn btn-primary mb-2">Back</a>
+    <h4 class="float-right" style="margin-top: -5px;">EMPLOYEE INFORMATION</h4>
+    <hr>
+
+    <div class="row ml-auto mr-auto text-center">
+      <div class="col-sm-2">
+        <a href="{% url 'add_category' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/hostel/004-hostel.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2 pt-4">Add Category</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'employee_designation' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/hostel/002-student-with-graduation-cap.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Employee Designation</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'add_qualification' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/008-book.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Add Qualification</h5>
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'employee_information' %}" class="btn btn-secondary text-white">
+          <img src="/static/icons/new_png/015-information-circle.png" width="60%" style="filter: invert(1)"><hr>
+        <h5 class="mt-2">Employee Information</h5>
+        </a>
+      </div>
+    </div>
+      
+  </div>
+
+  {% endblock %}

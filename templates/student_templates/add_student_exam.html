@@ -1,0 +1,60 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<div class="container">
+		<a href="{% url 'student_exam' %}" class="btn btn-primary">Back</a>
+		<hr>
+	</div>
+	<div class="container" style="width: 70%; outline: 1px solid black; outline-offset: 8px;">
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="row pt-2">
+				<div class="col-sm-12">
+					<h4 class="text-center">ADD STUDENT EXAM</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					{{exame_form.student_id | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{exame_form.class_id | as_crispy_field}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					{{exame_form.batch_id | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{exame_form.subject_id | as_crispy_field}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					{{exame_form.obtained_marks | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{exame_form.status | as_crispy_field}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					{{exame_form.exam_id | as_crispy_field}}
+				</div>
+				
+			</div>
+			<button class="btn btn-success" type="submit">Add Student Exam</button>
+		</form>
+	</div>
+	<br>
+	<br>
+
+
+{% endblock %}

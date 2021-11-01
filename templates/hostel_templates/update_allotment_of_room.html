@@ -1,0 +1,45 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+
+<div class="container">
+  <a href="{% url 'hostels' %}" class="btn btn-primary mb-2">Back</a>
+    <table class="table table-bordered table-hover table-striped">
+      <div class="container bg-light">
+    <div class="row">
+      <div class="col-sm-12">
+        <h4 class="pt-4 text-center">UPDATE ALLOTEMENT ROOM</h4>
+      </div>
+    </div><hr>
+    <div class="row" style="background-color: lightgrey; padding: 32px;">
+      <div class="col-sm-12">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-12">
+              {{allotment_room_form.student_id | as_crispy_field }}
+            </div>
+            <div class="col-sm-12">
+              {{allotment_room_form.room_id | as_crispy_field }}
+            </div>
+            <div class="col-sm-12">
+              {{allotment_room_form.status | as_crispy_field }}
+            </div>
+          </div><hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-info mb-1">Add Allotment Room</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><hr>
+  {% endblock %}

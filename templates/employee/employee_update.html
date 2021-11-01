@@ -1,0 +1,101 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+<style type="text/css">
+	.form-control{
+		border: 1px solid grey;
+	}
+</style>
+
+	<div class="container">
+		<a href="{% url 'student_info' %}" class="btn btn-primary">Back</a>
+		<hr>
+	</div>
+	<div class="container" style="width: 70%; outline: 1px solid black; outline-offset: 8px;">
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="row p-2">
+				<div class="col-sm-12">
+					<h4 class="text-center">UPDATE EMPLOYEE</h4>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-6">
+					{{employe_form.Employee_name | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{employe_form.Emp_mobile_no | as_crispy_field}}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					{{employe_form.Gender | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{employe_form.Cnic | as_crispy_field}}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					{{employe_form.Hire_date | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{employe_form.End_date | as_crispy_field}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					{{employe_form.Basic_salary | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{employe_form.Account_no | as_crispy_field}}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6 mt-4">
+					{{employe_form.Address | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{employe_form.Category_id | as_crispy_field}}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					{{employe_form.Designation_id | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{employe_form.Qualification_id | as_crispy_field}}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					{{employe_form.Status | as_crispy_field}}
+				</div>
+				<div class="col-sm-6">
+					{{employe_form.Picture | as_crispy_field}}
+				</div>
+			</div>
+
+			
+			<hr>
+			<button class="btn btn-success" type="submit">Update Employee</button>
+		</form>
+	</div>
+	<br>
+	<br>
+
+
+{% endblock %}

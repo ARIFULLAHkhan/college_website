@@ -1,0 +1,43 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+
+<div class="container">
+  <a href="{% url 'hostels' %}" class="btn btn-primary mb-2">Back</a>
+    <table class="table table-bordered table-hover table-striped">
+      <div class="container bg-light">
+    <div class="row">
+      <div class="col-sm-12">
+        <h4 class="pt-4 text-center">UPDATE STUDENT RECORDS IN HOSTEL</h4>
+      </div>
+    </div><hr>
+    <div class="row" style="background-color: lightgrey; padding: 32px;">
+      <div class="col-sm-12">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-12">
+              {{student_record_hostel_form.hostel | as_crispy_field}}
+            </div>
+            <div class="col-sm-12">
+              {{student_record_hostel_form.student_id | as_crispy_field}}
+            </div>
+            <hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-info ml-3 mb-1">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><hr>
+
+  {% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'student_templates/basic_templates/links.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'student_templates/basic_templates/navbar.html' %}
+
+
+<div class="container">
+  <a href="{% url 'hostels' %}" class="btn btn-primary mb-2">Back</a>
+    <br>
+    <div class="floa-right">
+      {% include 'student_templates/basic_templates/messages.html' %}
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+      <div class="container bg-light">
+    <div class="row">
+      <div class="col-sm-12">
+        <h6 class="pt-4">HOSTEL ROOM TYPE OF HOSTELS RECORDS</h6>
+      </div>
+    </div><hr>
+    <div class="row" style="background-color: lightgrey; padding: 32px;">
+      <div class="col-sm-12">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-12">
+              {{room_type_form.room_type_name | as_crispy_field }}
+            </div>
+            <div class="col-sm-12">
+              {{room_type_form.status | as_crispy_field }}
+            </div>
+          </div><hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-info mb-1">Add Room Type</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><hr>
+      <tr class="bg-dark text-white">
+        <th>ID</th>
+        <th style="width: 30%">Hostal Room Type</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      {% for i in all_room_type %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.room_type_name}}</td>
+        <td>{{i.status}}</td>
+        <td style="width: 20%;">
+          <a href="{% url 'update_hostel_room' i.id %}" type="button" class="btn btn-success btn-sm">Update</a>
+          <a href="{% url 'delete_hostel_room' i.id %}" type="button" class="btn btn-danger btn-sm">Remove</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  {% endblock %}
